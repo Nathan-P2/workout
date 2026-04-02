@@ -1,0 +1,386 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .wrap { padding: 1rem 0 2rem; }
+  .header { margin-bottom: 1.5rem; }
+  .badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; margin-bottom: 8px; }
+  .badge-push { background: #FAEEDA; color: #854F0B; }
+  .badge-pull { background: #E1F5EE; color: #0F6E56; }
+  .badge-rest { background: #F1EFE8; color: #5F5E5A; }
+  .days-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .day-btn { border: 0.5px solid var(--color-border-secondary); background: transparent; border-radius: var(--border-radius-md); padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); transition: all 0.15s; }
+  .day-btn:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+  .day-btn.active-push { background: #FAEEDA; color: #854F0B; border-color: #BA7517; }
+  .day-btn.active-pull { background: #E1F5EE; color: #0F6E56; border-color: #1D9E75; }
+  .day-content { display: none; }
+  .day-content.visible { display: block; }
+  .day-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .day-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.25rem; }
+  .muscles { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .muscle-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+  .exercises { display: flex; flex-direction: column; gap: 10px; }
+  .ex-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px; }
+  .ex-num { font-size: 12px; font-weight: 500; min-width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .num-push { background: #FAEEDA; color: #854F0B; }
+  .num-pull { background: #E1F5EE; color: #0F6E56; }
+  .ex-info { flex: 1; }
+  .ex-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+  .ex-detail { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 5px; }
+  .ex-tip { font-size: 11px; color: var(--color-text-tertiary); font-style: italic; }
+  .ex-meta { display: flex; gap: 6px; flex-shrink: 0; flex-direction: column; align-items: flex-end; }
+  .meta-pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+  .pill-sets { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .pill-reps-push { background: #FAEEDA; color: #854F0B; }
+  .pill-reps-pull { background: #E1F5EE; color: #0F6E56; }
+  .tip-box { margin-top: 1.25rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; border-left: 2px solid var(--color-border-secondary); }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+</style>
+
+<div class="wrap">
+  <div class="header">
+    <div class="days-nav">
+      <button class="day-btn active-push" onclick="show('seg')">Segunda</button>
+      <button class="day-btn" onclick="show('ter')">Terça</button>
+      <button class="day-btn" onclick="show('qua')">Quarta · descanso</button>
+      <button class="day-btn" onclick="show('qui')">Quinta</button>
+      <button class="day-btn" onclick="show('sex')">Sexta</button>
+    </div>
+  </div>
+
+  <!-- SEGUNDA -->
+  <div class="day-content visible" id="day-seg">
+    <span class="badge badge-push">Push A — Empurrar</span>
+    <div class="day-title">Segunda-feira</div>
+    <div class="day-sub">Peito · Ombros · Tríceps</div>
+    <div class="muscles">
+      <span class="muscle-tag">Peitoral maior</span>
+      <span class="muscle-tag">Deltóide anterior</span>
+      <span class="muscle-tag">Deltóide lateral</span>
+      <span class="muscle-tag">Tríceps braquial</span>
+    </div>
+    <div class="section-label">Exercícios</div>
+    <div class="exercises">
+      <div class="ex-card">
+        <div class="ex-num num-push">1</div>
+        <div class="ex-info">
+          <div class="ex-name">Chest Press na máquina</div>
+          <div class="ex-detail">Empurre o selim na altura do peito, cotovelos a ~45° do tronco</div>
+          <div class="ex-tip">Foque em sentir o peito contraindo, não os ombros</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">2</div>
+        <div class="ex-info">
+          <div class="ex-name">Shoulder Press na máquina</div>
+          <div class="ex-detail">Empurre acima da cabeça sem travar os cotovelos</div>
+          <div class="ex-tip">Ajuste o assento pra que as alças fiquem na altura dos ombros</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">3</div>
+        <div class="ex-info">
+          <div class="ex-name">Elevação lateral no cabo (baixo)</div>
+          <div class="ex-detail">Cabo saindo do lado contrário ao braço que vai elevar, cotovelo levemente flexionado</div>
+          <div class="ex-tip">Suba até a altura do ombro, não mais. Controle a descida.</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">4</div>
+        <div class="ex-info">
+          <div class="ex-name">Tríceps pulley — corda</div>
+          <div class="ex-detail">Cotovelos fixos ao lado do tronco, abra a corda no final da extensão</div>
+          <div class="ex-tip">A abertura da corda no final aumenta o pico de contração</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">5</div>
+        <div class="ex-info">
+          <div class="ex-name">Tríceps na máquina (ou mergulho assistido)</div>
+          <div class="ex-detail">Extend completamente o cotovelo e volta com controle</div>
+          <div class="ex-tip">Se não tiver máquina, substitua por tríceps testa no cabo</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">12–15 reps</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">Descanso entre séries: 60–90s para isoladores (elevação, tríceps) · 90–120s para compostos (chest press, shoulder press)</div>
+  </div>
+
+  <!-- TERÇA -->
+  <div class="day-content" id="day-ter">
+    <span class="badge badge-pull">Pull A — Puxar</span>
+    <div class="day-title">Terça-feira</div>
+    <div class="day-sub">Costas · Bíceps · Ombro posterior</div>
+    <div class="muscles">
+      <span class="muscle-tag">Latíssimo do dorso</span>
+      <span class="muscle-tag">Trapézio médio</span>
+      <span class="muscle-tag">Rombóide</span>
+      <span class="muscle-tag">Bíceps braquial</span>
+      <span class="muscle-tag">Deltóide posterior</span>
+    </div>
+    <div class="section-label">Exercícios</div>
+    <div class="exercises">
+      <div class="ex-card">
+        <div class="ex-num num-pull">1</div>
+        <div class="ex-info">
+          <div class="ex-name">Puxada frontal na polia (Lat Pulldown)</div>
+          <div class="ex-detail">Barra larga, puxe até a altura do queixo, peito projetado pra frente</div>
+          <div class="ex-tip">O melhor exercício de costas em máquina pra iniciante. Priorize aqui.</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">4 séries</span>
+          <span class="meta-pill pill-reps-pull">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">2</div>
+        <div class="ex-info">
+          <div class="ex-name">Remada sentada na polia (cabo)</div>
+          <div class="ex-detail">Costas eretas, puxe o cabo até o abdômen, espreme as escápulas no final</div>
+          <div class="ex-tip">Não balance o tronco. O movimento parte dos cotovelos.</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">3</div>
+        <div class="ex-info">
+          <div class="ex-name">Face pull no cabo (corda)</div>
+          <div class="ex-detail">Polia na altura dos olhos, puxe a corda até o rosto abrindo os cotovelos pra fora</div>
+          <div class="ex-tip">Essencial pra saúde dos ombros e pra construir o deltóide posterior</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">4</div>
+        <div class="ex-info">
+          <div class="ex-name">Rosca direta no cabo (barra ou corda)</div>
+          <div class="ex-detail">Polia baixa, cotovelos fixos, curl completo até o ombro</div>
+          <div class="ex-tip">O cabo mantém tensão constante ao longo do movimento — superior ao haltere pra hipertrofia</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">5</div>
+        <div class="ex-info">
+          <div class="ex-name">Rosca scott na máquina (ou banco scott)</div>
+          <div class="ex-detail">Cotovelo apoiado, extensão total na descida, contração total em cima</div>
+          <div class="ex-tip">A extensão completa no final é o que mais estimula o bíceps</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">12–15 reps</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">Descanso entre séries: 60–90s para bíceps e face pull · 90–120s para puxada e remada</div>
+  </div>
+
+  <!-- QUARTA -->
+  <div class="day-content" id="day-qua">
+    <span class="badge badge-rest">Descanso</span>
+    <div class="day-title">Quarta-feira</div>
+    <div class="day-sub">Recuperação ativa</div>
+    <div class="tip-box" style="margin-top:1rem;">O músculo cresce no descanso, não na academia. Prioriza sono (7–9h), proteína (1.6–2g/kg → ~120–150g/dia pra você) e hidratação. Pode fazer uma caminhada leve ou alongamento se quiser se mexer.</div>
+  </div>
+
+  <!-- QUINTA -->
+  <div class="day-content" id="day-qui">
+    <span class="badge badge-push">Push B — Empurrar</span>
+    <div class="day-title">Quinta-feira</div>
+    <div class="day-sub">Ombros · Peito · Tríceps (variação)</div>
+    <div class="muscles">
+      <span class="muscle-tag">Deltóide lateral</span>
+      <span class="muscle-tag">Deltóide anterior</span>
+      <span class="muscle-tag">Peitoral (longa tensão)</span>
+      <span class="muscle-tag">Tríceps longa cabeça</span>
+    </div>
+    <div class="section-label">Exercícios</div>
+    <div class="exercises">
+      <div class="ex-card">
+        <div class="ex-num num-push">1</div>
+        <div class="ex-info">
+          <div class="ex-name">Peck Deck (Voador)</div>
+          <div class="ex-detail">Cotovelos levemente flexionados, foca no espremer no ponto de contração</div>
+          <div class="ex-tip">Traz alongamento máximo no peito — diferente do chest press</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">2</div>
+        <div class="ex-info">
+          <div class="ex-name">Shoulder Press na máquina</div>
+          <div class="ex-detail">Mesma execução da segunda, mas tenta progredir o peso ou mais reps</div>
+          <div class="ex-tip">Repetir 2x/semana é o que acelera o crescimento de ombro</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">3</div>
+        <div class="ex-info">
+          <div class="ex-name">Elevação lateral na máquina (Lateral Raise Machine)</div>
+          <div class="ex-detail">Cotovelos apoiados nos suportes, sobe até a horizontal e desce com controle</div>
+          <div class="ex-tip">Mais seguro que o cabo pra manter a forma correta com cansaço</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">4</div>
+        <div class="ex-info">
+          <div class="ex-name">Tríceps overhead no cabo (corda, polia alta)</div>
+          <div class="ex-detail">Corpo inclinado à frente, estende os braços pra baixo mantendo cotovelos fixos</div>
+          <div class="ex-tip">Trabalha a longa cabeça do tríceps — responsável por 60% do volume do braço</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-push">5</div>
+        <div class="ex-info">
+          <div class="ex-name">Tríceps pulley — barra reta</div>
+          <div class="ex-detail">Variação do pulley pra ângulo diferente, polia alta, barra reta ou EZ</div>
+          <div class="ex-tip">Alterna com a corda ao longo das semanas pra mais variedade de estímulo</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-push">12–15 reps</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">Descanso entre séries: 60–90s para isoladores · 90–120s para peck deck e shoulder press</div>
+  </div>
+
+  <!-- SEXTA -->
+  <div class="day-content" id="day-sex">
+    <span class="badge badge-pull">Pull B + Pernas</span>
+    <div class="day-title">Sexta-feira</div>
+    <div class="day-sub">Costas · Bíceps · Pernas (base)</div>
+    <div class="muscles">
+      <span class="muscle-tag">Latíssimo</span>
+      <span class="muscle-tag">Rombóide</span>
+      <span class="muscle-tag">Bíceps</span>
+      <span class="muscle-tag">Quadríceps</span>
+      <span class="muscle-tag">Isquiotibiais</span>
+    </div>
+    <div class="section-label">Exercícios</div>
+    <div class="exercises">
+      <div class="ex-card">
+        <div class="ex-num num-pull">1</div>
+        <div class="ex-info">
+          <div class="ex-name">Puxada na máquina (Lat Machine)</div>
+          <div class="ex-detail">Se o gym tiver máquina de puxada (não polia), usa ela aqui</div>
+          <div class="ex-tip">Ângulo diferente da terça = mais estímulo total nas costas na semana</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">4 séries</span>
+          <span class="meta-pill pill-reps-pull">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">2</div>
+        <div class="ex-info">
+          <div class="ex-name">Remada cavalinho (máquina)</div>
+          <div class="ex-detail">Peito apoiado, cotovelos fechados ao corpo, puxe até o quadril</div>
+          <div class="ex-tip">Peito apoiado elimina o balanço do tronco — execução mais limpa pra iniciante</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">10–12 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">3</div>
+        <div class="ex-info">
+          <div class="ex-name">Rosca martelo no cabo (polia baixa)</div>
+          <div class="ex-detail">Pegada neutra (polegar pra cima), curl completo, um braço de cada vez</div>
+          <div class="ex-tip">Trabalha braquial e braquiorradial além do bíceps — braço mais espesso</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">4</div>
+        <div class="ex-info">
+          <div class="ex-name">Leg Press 45°</div>
+          <div class="ex-detail">Pés na largura do ombro, desce até 90° de flexão, empurra sem travar os joelhos</div>
+          <div class="ex-tip">Pernas são metade da massa muscular do corpo — não negligencie mesmo com foco em superiores</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">12–15 reps</span>
+        </div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-num num-pull">5</div>
+        <div class="ex-info">
+          <div class="ex-name">Leg Curl na máquina (deitado)</div>
+          <div class="ex-detail">Calcanhar até o glúteo, desce controlado sem bater o peso</div>
+          <div class="ex-tip">Isquiotibiais são frequentemente negligenciados — ajuda a proteger o joelho</div>
+        </div>
+        <div class="ex-meta">
+          <span class="meta-pill pill-sets">3 séries</span>
+          <span class="meta-pill pill-reps-pull">12–15 reps</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box">Descanso entre séries: 60–90s para bíceps · 90–120s para costas e pernas</div>
+  </div>
+</div>
+
+<script>
+const days = ['seg','ter','qua','qui','sex'];
+const pushDays = ['seg','qui'];
+const pullDays = ['ter','sex'];
+const btns = document.querySelectorAll('.day-btn');
+
+function show(day) {
+  days.forEach((d, i) => {
+    document.getElementById('day-' + d).classList.toggle('visible', d === day);
+    btns[i].className = 'day-btn';
+    if (d === day) {
+      if (pushDays.includes(d)) btns[i].classList.add('active-push');
+      else if (pullDays.includes(d)) btns[i].classList.add('active-pull');
+    }
+  });
+}
+</script>
